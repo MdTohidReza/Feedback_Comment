@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-interface EmailTemplateProps {
-  firstName: string;
+interface verificationEmailProps{
+  username: string;
+  otp:string;
 }
 
-export function EmailTemplate({ firstName }: EmailTemplateProps) {
+export function EmailTemplate({ username, otp }: verificationEmailProps) {
   return (
     <div>
-      <h1>Welcome, {firstName}!</h1>
+      <h1>Welcome, {username} your OTP is {otp}</h1>
     </div>
   );
 }
