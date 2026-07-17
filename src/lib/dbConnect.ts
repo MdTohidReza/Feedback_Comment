@@ -1,4 +1,4 @@
-import mongoose from "mongodb"
+import mongoose from "mongoose"
 
 type ConnectionObject = {
     isConnected?: number
