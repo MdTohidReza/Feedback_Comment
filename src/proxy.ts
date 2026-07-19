@@ -1,7 +1,7 @@
 import { getToken } from "next-auth/jwt"
 import { NextRequest, NextResponse } from 'next/server'
 export { default } from "next-auth/middleware"
- 
+
 export async function proxy(request: NextRequest) {
     const token = await getToken({ req: request })
     const url = request.nextUrl
@@ -20,7 +20,7 @@ export async function proxy(request: NextRequest) {
     if (
         url.pathname.startsWith('/sign-in') ||
         url.pathname.startsWith('/sign-up') ||
-        url.pathname.startsWith('/verify') ||
+        url.pathname.startsWith('/verify')  ||
         url.pathname === '/'
     ) {
         return NextResponse.redirect(new URL('/dashboard', request.url))
@@ -28,9 +28,9 @@ export async function proxy(request: NextRequest) {
 
     return NextResponse.next()
 }
- 
+
 export const config = {
-  matcher: [
+matcher: [
     '/sign-in',
     '/sign-up',
     '/',
