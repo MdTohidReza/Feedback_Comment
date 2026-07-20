@@ -11,6 +11,8 @@ import { useRouter } from "next/navigation"
 import { signUpSchema } from "@/src/schemas/signUpSchema"
 import axios,{AxiosError} from "axios"
 import { ApiResponse } from "@/src/types/apiresponse"
+
+
 const Page = ()=>{
   const[username, setUsername] = useState('')
   const[usernameMessage, setUsernameMessage] = useState('')
@@ -51,10 +53,31 @@ const Page = ()=>{
     checkUsernameUnique()
   },[debounceUsername])
 
-  
+  const onSubmit = async (data:z.infer<typeof signUpSchema>)=>{
+    try {
+      const response = await axios.post<ApiResponse>('/api/sign-up',data)
+      toast("User Created Successfully",{
+        description:response.data.message,
+        position: "top-right"
+      })
+      router.replace(`/verify/${username}`)
+      setIsSubmitting(false)
+    } catch (error) {
+      console.error("Error in SignUp User",error)
+      const axiosError = error as AxiosError<ApiResponse>
+      const errorMessage = axiosError.response?.data.message
+      toast("SignUp Failed",{
+        description:errorMessage,
+        position: "top-right",
+      })
+      setIsSubmitting(false)
+    }
+  }
   return(
-    <div>
-      page
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+        
+      </div>
     </div>
   )
 }
