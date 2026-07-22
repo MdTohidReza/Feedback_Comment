@@ -31,13 +31,13 @@ export async function GET (request:Request){
         if(existingUserVerified){
             return Response.json({
             success:false,
-            message:'User Is Already Exist'
+            message:'Usename is already taken'
             },{status:400})
         }
             return Response.json({
             success:true,
             message:'Username is unique'
-            },{status:400})
+            },{status:200})
     } catch (error) {
         console.log("Error Checking for Username",error)
         return Response.json(
