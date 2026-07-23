@@ -20,7 +20,7 @@ const Page = ()=>{
   const[usernameMessage, setUsernameMessage] = useState('')
   const[isCheckingUsername, setIsCheckingUsername] = useState(false)
   const[isSubmitting, setIsSubmitting] = useState(false)
- const debounced = useDebounceCallback(setUsername, 2000)
+  const debounced = useDebounceCallback(setUsername, 2000)
 
   const router = useRouter()
   //Zod Implementation
